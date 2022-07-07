@@ -1,6 +1,8 @@
 import ContactForm from '../ContactForm';
 import Filter from '../Filter';
 import ContactList from '../ContactList';
+import { useSelector } from 'react-redux';
+import { getFilteredContacts } from 'redux/contacts/contactsSelectors';
 import { ThemeProvider } from 'styled-components';
 import theme from '../../constants/theme';
 import {
@@ -10,21 +12,11 @@ import {
   Section,
   Note,
 } from './App.styled';
-import { useSelector } from 'react-redux';
-import { getItemsValue, getFilterValue } from 'redux/ContactsSlice/ContactsSlice';
 
 
 export const App = () => {
-  const contacts = useSelector(getItemsValue);
-  const filter = useSelector(getFilterValue);
 
-  const getFilteredContacts = () => {
-    return contacts.filter(contact =>
-      contact.name.toLowerCase().includes(filter.toLowerCase())
-    );
-  };
-
-  const filteredContacts = getFilteredContacts();
+  const filteredContacts = useSelector(getFilteredContacts);
 
   return (
     <ThemeProvider theme={theme}>

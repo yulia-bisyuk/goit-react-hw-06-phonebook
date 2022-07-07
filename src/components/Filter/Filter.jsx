@@ -1,7 +1,7 @@
 import React from 'react';
-import { FormLabel, FormInput } from '../ContactForm/ContactForm.styled';
 import { useDispatch } from 'react-redux';
-import { changeFilter } from 'redux/ContactsSlice/ContactsSlice';
+import { changeFilter } from 'redux/contacts/contactsSlice';
+import { FormLabel, FormInput } from '../ContactForm/ContactForm.styled';
 
 
 const Filter = () => {

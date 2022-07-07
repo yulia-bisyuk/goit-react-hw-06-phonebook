@@ -1,31 +1,19 @@
 import { useState } from 'react';
-import { nanoid } from 'nanoid';
-import { FormLabel, FormInput, AddContactBtn } from './ContactForm.styled';
-import { addItem, getItemsValue } from 'redux/ContactsSlice/ContactsSlice';
+import { addItem } from 'redux/contacts/contactsSlice';
+import { getContactsValue } from 'redux/contacts/contactsSelectors';
 import { useDispatch, useSelector } from 'react-redux';
+import { FormLabel, FormInput, AddContactBtn } from './ContactForm.styled';
 
 const ContactForm = () => {
   const [userName, setUserName] = useState('');
   const [userNumber, setUserNumber] = useState('');
   const dispatch = useDispatch();
-  const contacts = useSelector(getItemsValue);
-
-  const nameLabelId = nanoid();
-  const numberLabelId = nanoid();
+  const contacts = useSelector(getContactsValue);
 
   const handleChange = e => {
     const { name, value } = e.currentTarget;
 
-    switch (name) {
-      case 'userName':
-        setUserName(value);
-        break;
-      case 'userNumber':
-        setUserNumber(value);
-        break;
-      default:
-        return;
-    }
+    name === 'userName' ? setUserName(value) : setUserNumber(value);
   };
 
   const handleSubmit = e => {
@@ -51,7 +39,7 @@ const ContactForm = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <FormLabel htmlFor={nameLabelId}>
+      <FormLabel>
         Name
         <FormInput
           type="text"
@@ -63,7 +51,7 @@ const ContactForm = () => {
           required
         />
       </FormLabel>
-      <FormLabel htmlFor={numberLabelId}>
+      <FormLabel>
         Number
         <FormInput
           type="tel"

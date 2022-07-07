@@ -1,12 +1,12 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { ImCancelCircle } from 'react-icons/im';
 import { IconContext } from "react-icons";
-import { DeleteButton, LiItem} from './ListItem.styled';
-import { useDispatch } from 'react-redux';
-import { deleteItem } from 'redux/ContactsSlice/ContactsSlice';
+import { deleteItem } from 'redux/contacts/contactsSlice';
+import { DeleteButton, LiItem} from './ContactListItem.styled';
 
-const ListItem = ({ id, name, number }) => {
+const ContactListItem = ({ id, name, number }) => {
     const dispatch = useDispatch();
 
     return (
@@ -25,10 +25,10 @@ const ListItem = ({ id, name, number }) => {
     
 };
 
-ListItem.propTypes = {
+ContactListItem.propTypes = {
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     number: PropTypes.string.isRequired,
 }
 
-export default ListItem;
+export default ContactListItem;
